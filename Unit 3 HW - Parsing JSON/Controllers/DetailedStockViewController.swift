@@ -10,32 +10,26 @@ import UIKit
 
 class DetailedStockViewController: UIViewController {
 
-    
+
     @IBOutlet weak var stockImage: UIImageView!
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+    @IBOutlet weak var lowPrice: UILabel!
+    var stock: Stock? = nil
+
+    @IBOutlet weak var highPrice: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        if let stock = stock{
+            if stock.change! > 0{
+                stockImage.image = #imageLiteral(resourceName: "bullish-1")
+            }
+            else{
+                stockImage.image = #imageLiteral(resourceName: "bearish")
+            }
+            highPrice.text = "High price:" + (stock.high?.description)!
+            lowPrice.text = "Low price:" + (stock.low?.description)!
+        }
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
     
 
     /*

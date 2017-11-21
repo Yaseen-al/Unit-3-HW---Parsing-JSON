@@ -34,6 +34,7 @@ class StocksViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     // Mark TableView: Required two methods for number of rows as well as cell and assign delegates and data source
+    /*
     func numberOfSections(in tableView: UITableView) -> Int {
         return 12
     }
@@ -42,6 +43,7 @@ class StocksViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         return "Section\(section)"
     }
+ */
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return filteredStocks.count
     }
@@ -78,14 +80,15 @@ class StocksViewController: UIViewController, UITableViewDelegate, UITableViewDa
         }
     }
 
-    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        if let destination = segue.destination as? DetailedStockViewController{
+            let indexPath = myStocksTableView.indexPathForSelectedRow
+            destination.stock = filteredStocks[(indexPath?.row)!]
+        }
+        
     }
-    */
 
 }
